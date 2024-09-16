@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 style="left: 500px; color: blue; font-style: italic;">{{getTime()}}</h1>
+  
+  <div direct [direction]="direction$" style="width: 230px;height: 7px;"></div>
+  language
+
+  <button class="btn btn-secondary" (click)="setDirection('rtl')">hebrew</button>
+  <button class="btn btn-secondary" (click)="setDirection('ltr')">english</button>
+  <br>
+  <div direct [direction]="direction$" style="width: 230px;height: 7px;"></div>
+
+  <div style=" left: 400px; width: 300px; padding: 15px;" class="btn-group" role="group" aria-label="Basic example">
+    <button routerLink="/home" type="button" class="btn btn-primary">home</button>
+    <button routerLink="/studentList" type="button" class="btn btn-primary">student-list</button>
+
+    <button routerLink="/settings" type="button" class="btn btn-primary">settings</button>
+
+  </div><br>
+
+  <!-- <button routerLink="/dddd">student-list</button> -->
+  <router-outlet></router-outlet>
+  <br>
+ 
+  <!-- <router-outlet name='secondary'>secondary outlet</router-outlet>  -->
+
+  <!-- <student-list></student-list>  -->
+  <!-- <exam-list></exam-list> -->
+  <observable></observable><br>
+</div>

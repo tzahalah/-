@@ -1,0 +1,16 @@
+<ul class="list-group ">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2">date:</div>
+        <div class="col-3">description:</div>
+        <div class="col-4"> grade:</div>
+    </div>
+    <li *ngFor="let exam of exams" class="list-group-item">
+        <div class="row">
+            <div class="col-1">{{exam.id}}</div>
+            <div class="col-2">{{exam.date.toLocaleDateString()}}</div>
+            <div class="col-3">{{exam.description}}</div>
+            <div class="col-4"> {{exam.grade}}</div>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,24 @@
+<input type="search" class="form-control" [formControl]="searchControl" placeholder="search" >
+<input type="checkbox" #chb (change)="showByStatus(chb.checked)">only active
+<ul class="list-group">
+    <li *ngFor="let student of students" class="list-group-item"
+        [ngClass]="{'active':selectedStudent&&selectedStudent.id==student.id, 'text-bg-success':student.gradeAvg&&student.gradeAvg>90,'list-group-item-success':student.status==false}">
+        <div class="row">
+            <div class="col-1">{{student.firstName}}</div>
+            <div class="col-2">{{student.lastName}}</div>
+            <div class="col-3"  style="width: 250px;">
+                <button  (click)="showDetails(student)">show details</button>
+            </div>
+            <div class="col-4"  style="width: 250px;">
+                <button (click)="deleteStudent(student)">delete</button>
+            </div>
+            <div class="col-5" style="width: 200px;">
+               {{getSumDaysMiss(student)}}  days of absence
+            </div>
+        </div>
+    </li>
+</ul>
+<br/><br/>
+<button class="btn btn-primary" (click)="addNewStudent()">add new student</button>
+<br/><br/>
+<student-details [_student]="selectedStudent" (onSaveStudent)="pushStudent($event)"></student-details>

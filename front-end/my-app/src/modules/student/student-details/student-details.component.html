@@ -1,0 +1,88 @@
+<div class="card" *ngIf="(student && !(student.status==false)) else leave ">
+    <div class="card-body">
+        <form [formGroup]="studentForm">
+
+            <div class="mb-3">
+                <label for="studentFirstName" class="form-label">first name:</label>
+                <input type="text" id="studentFirstName" class="form-control" formControlName="firstName"
+                    #studentName />
+            </div>
+            <div class="mb-3">
+                <label for="studentLastName" class="form-label">last name:</label>
+                <input type="text" id="studentLastName" class="form-control" formControlName="lastName" #studentName />
+            </div>
+            <div class="mb-3">
+                <label for="studentAddress" class="form-label">address:</label>
+                <input type="text" id="studentAddress" class="form-control" formControlName="address" />
+            </div>
+            <div class="mb-3">
+                <label for="studentCourse" class="form-label">Course of study</label>
+                <select id="studentCourse" class="form-control" formControlName="course">
+                    <option *ngFor="let course of courseList" [value]="course.name">{{course.name}}</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+
+                <label for="schoolYear" class="form-label">school year :</label>
+                <div style=" width:200px; height: 22px; padding: 0%; display:-webkit-inline-flex;">
+                    <input id="schoolYear" type="radio" name="schoolYear" [value]="year.a"
+                        formControlName="schoolYear" /><b>a</b>
+
+                    <input id="schoolYear" type="radio" name="schoolYear" [value]="year.b"
+                        formControlName="schoolYear" /><b>b</b>
+
+                    <input id="schoolYear" type="radio" name="schoolYear" [value]="year.c"
+                        formControlName="schoolYear" /><b>c</b>
+                </div>
+            </div>
+            <div [ngSwitch]="studentForm.controls['schoolYear'].value">
+                <div style="color:brown" *ngSwitchCase="year.a">150 days</div>
+                <div style="color:brown" *ngSwitchCase="year.b">240 days</div>
+                <div style="color:brown" *ngSwitchCase="year.c">310 days</div>
+            </div>
+            <div class="mb-3">
+                <label for="studentGradeAvg" class="form-label">grade Avgerage:</label>
+                <input type="number" id="studentGradeAvg" class="form-control" formControlName="gradeAvg" />
+            </div>
+            <div class="mb-3">
+                <label for="studentStatus" class="form-label">status</label>
+                <input type="checkbox" id="studentStatus" formControlName="status" />
+            </div>
+            <div class="mb-3">
+                <label for="studentLeftDate" class="form-label">left date:</label>
+                <input type="datetime-local" id="studentLeftDate" class="form-control" formControlName="leftDate" />
+            </div>
+        </form>
+            
+            <div *ngIf="student.id!=0">
+
+                <!-- {{getSumDaysMiss(student.id)}} Days of absence so far -->
+                <div class="mb-3">
+                    <label for="absence.dateBegin" class="form-label">date Begin:</label>
+                    <input type="datetime-local" id="absence.dateBegin" class="form-control"  [(ngModel)]="dateBegin"/>
+                   
+                </div>
+                <div class="mb-3">
+                    <label for="absence.numDays" class="form-label">num Days:</label>
+                    <input type="number" id="absence.numDays" class="form-control" [(ngModel)]="numDays" />
+
+                </div>
+            </div>
+            <!-- <br> {{studentForm.value |json}} -->
+
+            <button class="btn btn-primary" [disabled]="!studentForm.valid"
+                (click)="saveStudent(studentForm.value)">save</button>
+
+
+        
+    </div>
+
+</div>
+<ng-template #leave>
+    <div class="card" *ngIf="student">
+        {{student.firstName}} {{student.lastName}} left at {{student.leftDate}}
+    </div>
+</ng-template>
+
+<!-- <ng-container *ngIf="!studentForm.valid"></ng-container> -->

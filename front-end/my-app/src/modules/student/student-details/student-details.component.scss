@@ -1,0 +1,20 @@
+.ng-invalid:not(form):not(.ng-untouched) {
+    border-left: 5px solid red;
+}
+
+.ng-valid:not(form) {
+    border-left: 5px solid green;
+}
+
+input {
+    width: 200px;
+}
+div{
+    display: inline-block;
+    padding: 12px;
+    border-radius: 20 px solid red;
+}
+#schoolYear{
+  
+  display: inline;
+}
